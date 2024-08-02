@@ -1,12 +1,16 @@
-const { gql } = require('apollo-server-express');
-
-const typeDefs = gql`
+const typeDefs = `
   type Teacher {
     _id: ID!
     name: String!
-    genre: String!
-    email: String!
-    classes: [Class] # Reference to Class type if you have a Class model
+    nextFestival: String!
+    bio: String
+    danceStyles: [String]
+    experience: Int
+    contactInfo: ContactInfo
+  }
+
+  type ContactInfo {
+    phone: String
   }
 
   type Query {
@@ -15,7 +19,14 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addTeacher(name: String!, genre: String!, email: String!): Teacher
+    addTeacher(
+      name: String!,
+      nextFestival: String!,
+      bio: String,
+      danceStyles: [String],
+      experience: Int,
+      phone: String
+    ): Teacher
   }
 `;
 
