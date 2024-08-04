@@ -1,9 +1,9 @@
-import Dance1 from '../assets/Dance1'
-import Dance2 from '../assets/Dance2'
-import Dance3 from '../assets/Dance3'
-import Dance4 from '../assets/Dance4'
-import Dance5 from '../assets/Dance5'
-import Dance6 from '../assets/Dance6'
+import Dance1 from '../assets/Dance1.png'
+import Dance2 from '../assets/Dance2.jpg'
+import Dance3 from '../assets/Dance3.jpg'
+import Dance4 from '../assets/Dance4.jpg'
+import Dance5 from '../assets/Dance5.jpg'
+import Dance6 from '../assets/Dance6.jpg'
 
 export const loginCarouselImages = [
     {
