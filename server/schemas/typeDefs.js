@@ -1,4 +1,4 @@
-const typeDefs =`
+const typeDefs = `
   type Class {
     _id: ID!
     name: String!

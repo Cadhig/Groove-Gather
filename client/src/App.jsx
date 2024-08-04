@@ -1,6 +1,16 @@
-import { useApolloClient } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+
+export const GET_ITEMS = gql`
+  query Teachers {
+    teachers {
+      _id
+      name
+    }
+  }
+`;
 export default function App() {
-  const client = useApolloClient({});
+  const client = useQuery(GET_ITEMS);
+
   console.log(client);
   return (
     <div>
