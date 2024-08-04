@@ -4,6 +4,7 @@ import Dance3 from '../assets/Dance3.jpg'
 import Dance4 from '../assets/Dance4.jpg'
 import Dance5 from '../assets/Dance5.jpg'
 import Dance6 from '../assets/Dance6.jpg'
+import Dance7 from '../assets/Dance7.jpg'
 
 export const loginCarouselImages = [
     {
@@ -29,5 +30,9 @@ export const loginCarouselImages = [
     {
         img: Dance6,
         name: 'group dance class'
+    },
+    {
+        img: Dance7,
+        name: 'older people dancing'
     }
 ]
