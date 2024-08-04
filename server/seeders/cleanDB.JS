@@ -1,5 +1,8 @@
-const models = require('../models');
-const db = require('../config/connection');
+const mongoose = require('mongoose');
+const models = require('../models/Teachers.js'); 
+const moddel =require('../models/Class.js')
+const db = require('../config/connection'); 
+
 
 module.exports = async (modelName, collectionName) => {
   try {
@@ -14,3 +17,4 @@ module.exports = async (modelName, collectionName) => {
     throw err;
   }
 }
+
