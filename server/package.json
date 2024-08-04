@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "watch": "nodemon server.js",
-     "seed": "node seeders/seed.js"
+    "seed": "node -r dotenv/config seeders/seed.js"
   },
   "dependencies": {
     "@apollo/server": "^4.7.1",
