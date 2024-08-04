@@ -11,14 +11,14 @@ export default function LoginCarousel() {
     }
 
     useEffect(() => {
-        const interval = setInterval(() => { infiniteScroll() }, 3000)
+        const interval = setInterval(() => { infiniteScroll() }, 4000)
         return () => clearInterval(interval)
     })
 
     return (
-        <div className="lg:flex h-svh flex-nowrap lg:w-1/3 overflow-hidden hidden">
+        <div className="lg:flex h-svh flex-nowrap lg:w-2/5 lg:flex-shrink-0 overflow-hidden hidden">
             {loginCarouselImages.map((content, index) => {
-                return <img src={content.img} alt={content.name} className=" object-cover h-full w-full flex items-center justify-center transition" style={{ transform: `translate(-${currentIndex * 100}%)` }} />
+                return <img src={content.img} alt={content.name} key={index} className="object-cover h-full w-full flex items-center justify-center transition" style={{ transform: `translate(-${currentIndex * 100}%)` }} />
             })}
         </div>
 

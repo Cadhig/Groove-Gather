@@ -13,7 +13,7 @@ export default function App() {
 
   console.log(client);
   return (
-    <div>
+    <div className="default-font">
       <h1>Hello App</h1>
       <button
         onClick={() => {
