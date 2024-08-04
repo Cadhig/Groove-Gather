@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
-const passwordValidator = require('../utils/pwValidator');
+const pwSchema = require('../utils/pwValidator');
 
 const Video = require('./Video');
 
@@ -23,7 +23,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      // pwValidator goes here near end of development stages
+      // pwSchema goes here near end of development stages
     },
     // Referencing video model to import ObjectId
     savedVideos: [
