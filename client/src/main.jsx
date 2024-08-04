@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
-import App from "./App.jsx";
-import Login from "./Login.jsx";
-import Signup from "./Signup.jsx";
+import App from "./Routes/App.jsx";
+import Login from "./Routes/Login.jsx";
+import Signup from "./Routes/Signup.jsx";
 import "./index.css";
 import {
   ApolloProvider,
@@ -18,11 +18,11 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <Login />
   },
   {
-    path: "/login",
-    element: <Login />
+    path: "/App",
+    element: <App />
   },
   {
     path: "/signup",
