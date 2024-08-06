@@ -71,6 +71,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     teachers: [Teacher]
     teacher(id: ID!): Teacher
     classes: [Class]
