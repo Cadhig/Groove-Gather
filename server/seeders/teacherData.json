@@ -7,7 +7,7 @@
       "danceStyles": ["Ariel", "Wand"],
       "experience": 5,
       "contactInfo": {
-        "phone": "555-1234"
+        "phone": "555-1234" 
       }
     },
     {
@@ -16,7 +16,7 @@
       "bio": "Expert in choreographed routines with a passion for Trance music.",
       "danceStyles": ["Shuffle", "Headbanger"],
       "experience": 8,
-      "contactInfo": {
+      "contactInfo": { 
         "phone": "555-5678"
       }
     },
