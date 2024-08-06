@@ -3,14 +3,13 @@ const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const pwSchema = require('../utils/pwValidator');
 
-const Video = require('./Video');
-
 const userSchema = new Schema(
   {
     username: {
       type: String,
       required: true,
       unique: true,
+      minlength: [3, 'Username must be at least 3 characters long'],
     },
     email: {
       type: String,
