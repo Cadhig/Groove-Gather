@@ -3,8 +3,6 @@ const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const pwSchema = require('../utils/pwValidator');
 
-const Video = require('./Video');
-
 const userSchema = new Schema(
   {
     username: {
