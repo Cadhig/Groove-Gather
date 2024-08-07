@@ -8,6 +8,9 @@ const typeDefs = gql`
     password: String!
     savedVideos: [Video]
     videoCount: Int
+    firstName: String!
+    lastName: String
+    bio: String
   }
 
   type Video {
@@ -72,6 +75,7 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    user(id: ID!): User
     teachers: [Teacher]
     teacher(id: ID!): Teacher
     classes: [Class]
@@ -88,7 +92,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-
+    updateUserProfile(firstName: String!, lastName: String, bio: String): User
+    
     addVideo(videoData: VideoInput!): Video
     updateVideo(id: ID!, videoData: VideoInput!): Video
     removeVideo(id: ID!): Video
