@@ -3,6 +3,7 @@ import { StrictMode } from "react";
 import App from "./Routes/App.jsx";
 import Login from "./Routes/Login.jsx";
 import Signup from "./Routes/Signup.jsx";
+import Profile from "./Routes/Profile.jsx";
 import "./index.css";
 import {
   ApolloProvider,
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />
   },
+  {
+    path: "/profile",
+    element: <Profile />
+  }
 ])
 
 // Initialize Apollo Client
