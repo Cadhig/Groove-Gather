@@ -3,7 +3,7 @@ import profile from '../assets/profile.jpg'
 export default function Account() {
 
     return (
-        <div className='flex items-center w-full justify-center'>
+        <div className='flex items-center w-full justify-center default-font'>
             <div className='flex flex-col gap-1 lg:w-1/2'>
                 <CoverAndProfilePicture />
                 <div className='ml-6 flex gap-2 items-center'>
