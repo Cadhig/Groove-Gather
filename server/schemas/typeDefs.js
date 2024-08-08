@@ -42,7 +42,6 @@ const typeDefs = gql`
     genre: String!
     instructor: Teacher!
     schedule: Schedule!
-    duration: String!
     location: String
   }
 
