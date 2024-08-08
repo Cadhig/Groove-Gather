@@ -5,7 +5,7 @@ const db = require('../config/connection');
 const cleanDB = require('./cleanDB');
 
 const teacherData = require('./teacherData.json');
-const classData = require('./testData.json');
+const classData = require('./classData.json');
 // const classData = require('./classData.json');
 
 db.once('open', async () => {

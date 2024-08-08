@@ -1,7 +1,7 @@
 [
     {
       "name": "Advanced flow",
-      "instructor": "Cassie",  
+    
       "schedule": {
         "day": "Monday",
         "time": "18:00"
@@ -11,7 +11,7 @@
     },
     {
       "name": "Ariel flow",
-      "instructor": "66b50e160e48105c8dfeb54b", 
+    
       "schedule": {
         "day": "Wednesday",
         "time": "16:00"
@@ -21,7 +21,7 @@
     },
     {
       "name": "Shuffle",
-      "instructor": "66b50e160e48105c8dfeb54c",  
+
       "schedule": {
         "day": "Friday",
         "time": "19:00"
@@ -31,7 +31,7 @@
     },
     {
       "name": "Hoop",
-      "instructor": "66b50e160e48105c8dfeb54d", 
+
       "schedule": {
         "day": "Saturday",
         "time": "10:00"
