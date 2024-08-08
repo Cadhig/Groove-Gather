@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const classSchema = new mongoose.Schema({
   name: {
@@ -18,15 +18,24 @@ const classSchema = new mongoose.Schema({
     time: {
       type: String,
       required: true
+    }
   },
- 
+  duration: {
+    type: String,
+    required: true
+  },
+  location: {
+    type: String
+  }
+}, {
+  timestamps: true,
   toJSON: {
     virtuals: true,
   },
   id: false
-},
 });
 
 const Class = mongoose.model('Class', classSchema);
 
 module.exports = Class;
+

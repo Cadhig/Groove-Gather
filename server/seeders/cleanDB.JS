@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const models = require('../models/Teachers.js'); 
-const moddels =require('../models/Class.js')
+const models =require('../models/Class.js')
 const db = require('../config/connection'); 
 
 

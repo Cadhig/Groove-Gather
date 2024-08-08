@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const teacherSchema = new mongoose.Schema({
   name: {
@@ -9,9 +9,11 @@ const teacherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  danceStyles: {
+  bio: {
     type: String,
-    required: true,
+  },
+  danceStyles: {
+    type: [String], 
   },
   experience: {
     type: Number,
@@ -22,6 +24,7 @@ const teacherSchema = new mongoose.Schema({
     ref: 'Class'
   }]
 }, {
+  timestamps: true,
   toJSON: {
     virtuals: true,
   },
