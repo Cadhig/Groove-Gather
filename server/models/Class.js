@@ -18,21 +18,13 @@ const classSchema = new mongoose.Schema({
     time: {
       type: String,
       required: true
-    }
   },
-  duration: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: String
-  }
-}, {
-  timestamps: true,
+ 
   toJSON: {
     virtuals: true,
   },
   id: false
+},
 });
 
 const Class = mongoose.model('Class', classSchema);
