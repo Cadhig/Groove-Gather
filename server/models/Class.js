@@ -7,8 +7,8 @@ const classSchema = new mongoose.Schema({
   },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Teacher',
-    required: true
+    ref: 'Teacher'
+    // required: true
   },
   schedule: {
     day: {
