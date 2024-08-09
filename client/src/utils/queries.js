@@ -32,7 +32,7 @@ export const GET_TEACHER_BY_ID = gql`
       experience
     }
   }
-`;
+`;4
 
 export const GET_USERS = gql`
   query GetUsers {
