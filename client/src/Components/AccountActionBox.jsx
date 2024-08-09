@@ -6,11 +6,12 @@
 // redirect: String,
 // redirectType: String
 // }
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import LoginAndSignupHeader from "./LoginAndSignupHeader"
 import { useState } from "react"
 
 export default function AccountActionBox(props) {
+    const navigate = useNavigate()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [verifyPassword, setVerifyPassword] = useState()
@@ -46,6 +47,7 @@ export default function AccountActionBox(props) {
             try {
                 //LOGIN api call
                 //Pass data as the body
+                return navigate('/homepage')
             } catch (err) {
                 console.error(err)
             }
@@ -61,6 +63,8 @@ export default function AccountActionBox(props) {
             try {
                 //Sign Up api call
                 //Pass data as the body
+                alert('Account creation successful!')
+                return navigate('/login')
             } catch (err) {
                 console.error(err)
             }
