@@ -11,6 +11,9 @@ export default {
         "groove-red-hover": "#AE3436",
         "groove-red-active": "#BA383A",
         "groove-neutral": "#D1D1D1"
+      },
+      grayscale: {
+        50: '50%',
       }
     },
   },

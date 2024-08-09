@@ -6,6 +6,7 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Profile from "./pages/Profile.jsx";
 import Calendar from "./pages/Calendar.jsx";
+import GrooveResult from './pages/GrooveResult.jsx'
 import './index.css'
 import Homepage from "./pages/Homepage.jsx";
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/homepage",
     element: <Homepage />
+  },
+  {
+    path: "/grooveResult",
+    element: <GrooveResult />
   }
 ]);
 
