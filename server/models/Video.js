@@ -21,7 +21,10 @@ const videoSchema = new Schema({
     type: String,
     required: true,
   },
-  genre: [String]
+  genre: [String],
+  duration: {
+    type: String,
+  },
 }, {
   toJSON: {
     virtuals: true,

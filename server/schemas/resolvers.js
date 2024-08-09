@@ -15,6 +15,15 @@ const resolvers = {
     user: async (parent, { id }) => {
       return User.findById(id);
     },
+    video: async (parent, { id }) => {
+      return Video.findById(id);
+    },
+    videos: async () => {
+      return Video.find();
+    },
+    videoByVideoId: async (parent, { videoId }) => {
+      return Video.findOne({ videoId });
+    },
     teachers: async () => {
       return Teacher.find().populate('classes');
     },
@@ -59,6 +68,34 @@ const resolvers = {
           { new: true }
         );
         return updatedUser;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    addVideo: async (parent, { videoData }, context) => {
+      if (context.user) {
+        const video = await Video.create(videoData);
+        return video;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    updateVideo: async (parent, { Id, videoData }, context) => {
+      if (context.user) {
+        return Video.findByIdAndUpdate(Id, videoData, { new: true });
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    removeVideo: async (parent, { videoId }, context) => {
+      if (context.user) {
+        const video = await Video.findOneAndDelete({
+          _id: videoId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { videos: video._id } }
+        );
+
+        return video;
       }
       throw new AuthenticationError('Not logged in');
     },
