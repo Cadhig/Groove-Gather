@@ -24,17 +24,6 @@ const userSchema = new Schema(
       required: true,
       // pwSchema goes here near end of development stages
     },
-    // Referencing video model to import ObjectId
-    savedVideos: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Video'
-      }
-    ],
-    videoCount: {
-      type: Number,
-      default: 0
-    },
     // Basic profile information
     firstName: {
       type: String,

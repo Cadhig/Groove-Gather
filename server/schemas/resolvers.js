@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-errors');
-const { User, Video, Class, Teacher} = require('../models');
+const { User, Class, Teacher} = require('../models');
  const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -12,15 +12,6 @@ const resolvers = {
     },
     user: async (parent, { id }) => {
       return User.findById(id);
-    },
-    video: async (parent, { id }) => {
-      return Video.findById(id);
-    },
-    videos: async () => {
-      return Video.find();
-    },
-    videoByVideoId: async (parent, { videoId }) => {
-      return Video.findOne({ videoId });
     },
     teachers: async () => {
       return Teacher.find().populate('classes');
@@ -69,41 +60,8 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-<<<<<<< HEAD
-    addVideo: async (parent, { videoData }, context) => {
-      if (context.user) {
-        const video = await Video.create(videoData);
-        return video;
-      }
-      throw new AuthenticationError('Not logged in');
-    },
-    updateVideo: async (parent, { Id, videoData }, context) => {
-      if (context.user) {
-        return Video.findByIdAndUpdate(Id, videoData, { new: true });
-      }
-      throw new AuthenticationError('Not logged in');
-    },
-    removeVideo: async (parent, { videoId }, context) => {
-      if (context.user) {
-        const video = await Video.findOneAndDelete({
-          _id: videoId,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { videos: video._id } }
-        );
-
-        return video;
-      }
-      throw new AuthenticationError('Not logged in');
-    },
-    addTeacher: async (parent, { name, nextFestival, bio, danceStyles, experience, contactInfo }) => {
-      const teacher = new Teacher({ name, nextFestival, bio, danceStyles, experience, contactInfo });
-=======
     addTeacher: async (parent, { name, nextFestival, bio, danceStyles, experience,}) => {
       const teacher = new Teacher({ name, nextFestival, bio, danceStyles, experience, });
->>>>>>> 4fe079528ee9eb1c2ad99e7a5e17b9b6b5a47f3d
       return teacher.save();
     },
     updateTeacher: async (parent, { id, name, nextFestival, bio, danceStyles, experience, }) => {
