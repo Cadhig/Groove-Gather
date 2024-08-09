@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-errors');
-const { User, Video, Class, Teacher} = require('../models');
+const { User, Class, Teacher} = require('../models');
  const { signToken } = require('../utils/auth');
 
 const resolvers = {
