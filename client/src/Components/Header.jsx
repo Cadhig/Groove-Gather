@@ -3,7 +3,7 @@ import ProfilePicture from '../assets/profile.jpg'
 export default function Header() {
 
     return (
-        <div className='flex justify-end items-center p-2 md:p-4 text-groove-red absolute w-full'>
+        <div className='flex justify-end items-center p-2 md:p-4 text-groove-red  w-full'>
             <div className="text-center w-full absolute">
                 <p className="logo-font text-2xl md:text-4xl text-center">Groove Gather</p>
             </div>
