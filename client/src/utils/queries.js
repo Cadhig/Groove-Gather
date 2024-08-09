@@ -24,12 +24,13 @@ export const GET_TEACHER_BY_ID = gql`
     teacher(id: $id) {
       _id
       name
-      genre
+      nextfestival
+      dancestyles
+      experience
     }
   }
-`;
+`;4
 
-// Queries related to users
 export const GET_USERS = gql`
   query GetUsers {
     users {
@@ -54,6 +55,10 @@ export const GET_CLASSES = gql`
     classes {
       _id
       name
+      instructor {
+        name
+        
+      }
       schedule {
         day
         time
