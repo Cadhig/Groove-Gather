@@ -34,7 +34,20 @@ const userSchema = new Schema(
     videoCount: {
       type: Number,
       default: 0
-    }
+    },
+    // Basic profile information
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: false,
+    },
+    bio: {
+      type: String,
+      required: false
+    },
   },
   {
     toJSON: {

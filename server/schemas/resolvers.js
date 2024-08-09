@@ -8,9 +8,12 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findById(context.user._id).populate('savedVideos');
+        return User.findById(context.user._id);
       }
       throw new AuthenticationError('Not logged in');
+    },
+    user: async (parent, { id }) => {
+      return User.findById(id);
     },
     teachers: async () => {
       return Teacher.find().populate('classes');
@@ -47,6 +50,17 @@ const resolvers = {
 
         const token = signToken(user);
         return { token, user };
+    },
+    updateUserProfile: async (parent, { firstName, lastName, bio }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          { firstName, lastName, bio },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('Not logged in');
     },
     addTeacher: async (parent, { name, nextFestival, bio, danceStyles, experience, contactInfo }) => {
       const teacher = new Teacher({ name, nextFestival, bio, danceStyles, experience, contactInfo });
