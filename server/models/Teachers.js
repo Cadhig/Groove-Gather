@@ -12,7 +12,7 @@ const teacherSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
-  danceStyles: {
+  dancestyles: {
     type: [String], 
   },
   experience: {

@@ -39,7 +39,6 @@ const typeDefs = gql`
   type Class {
     _id: ID!
     name: String!
-    genre: String!
     instructor: Teacher!
     schedule: Schedule!
     location: String
@@ -47,7 +46,6 @@ const typeDefs = gql`
 
   input ClassInput {
     name: String!
-    genre: String!
     instructor: ID!
     schedule: ScheduleInput!
     duration: String!
@@ -67,8 +65,7 @@ const typeDefs = gql`
   type Teacher {
     _id: ID!
     name: String!
-    genre: String!
-    email: String!
+    dancestyles: [String!]
     classes: [Class]
   }
 
@@ -98,11 +95,11 @@ const typeDefs = gql`
     removeVideo(id: ID!): Video
 
     addTeacher(name: String!, genre: String!, email: String!): Teacher
-    updateTeacher(id: ID!, name: String, genre: String, email: String): Teacher
+    updateTeacher(id: ID!, name: String, dancestyles: [String], email: String): Teacher
     removeTeacher(id: ID!): Teacher
     
     addClass(name: String!, genre: String!, instructor: ID!, schedule: ScheduleInput!, duration: String!, location: String): Class
-    updateClass(id: ID!, name: String, genre: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
+    updateClass(id: ID!, name: String, dancestyles: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
     removeClass(id: ID!): Class
   }
 `;
