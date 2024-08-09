@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    firstName: String!
+    firstName: String
     lastName: String
     bio: String
   }
@@ -42,11 +42,13 @@ const typeDefs = gql`
     name: String!
     dancestyles: [String!]
     classes: [Class]
+    grooves: [String]
   }
 
   type Query {
     me: User
     user(id: ID!): User
+    searchTeachers(keyword: String!): [Teacher]
     teachers: [Teacher]
     teacher(id: ID!): Teacher
     classes: [Class]
@@ -61,7 +63,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    updateUserProfile(firstName: String!, lastName: String, bio: String): User
+    updateUserProfile(firstName: String, lastName: String, bio: String): User
 
     addTeacher(name: String!, genre: String!, email: String!): Teacher
     updateTeacher(id: ID!, name: String, dancestyles: [String], email: String): Teacher
