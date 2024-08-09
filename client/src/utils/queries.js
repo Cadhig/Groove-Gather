@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+<<<<<<< HEAD
 export const GET_ME = gql`
   query me {
     me {
@@ -10,6 +11,8 @@ export const GET_ME = gql`
   }
 `;
 
+=======
+>>>>>>> 5917f738 (added calander)
 export const GET_TEACHERS = gql`
   query GetTeachers {
     teachers {
@@ -24,12 +27,13 @@ export const GET_TEACHER_BY_ID = gql`
     teacher(id: $id) {
       _id
       name
-      genre
+      nextfestival
+      dancestyles
+      experience
     }
   }
 `;
 
-// Queries related to users
 export const GET_USERS = gql`
   query GetUsers {
     users {
@@ -54,6 +58,10 @@ export const GET_CLASSES = gql`
     classes {
       _id
       name
+      instructor {
+        name
+        
+      }
       schedule {
         day
         time
