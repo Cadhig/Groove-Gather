@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-errors');
 const { User, Class, Teacher} = require('../models');
- const { signToken } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -12,6 +12,18 @@ const resolvers = {
     },
     user: async (parent, { id }) => {
       return User.findById(id);
+    },
+    searchTeachers: async (parent, { keyword }) => {
+      if (!keyword) {
+        return [];
+      }
+      const regex = new RegExp(keyword, 'i');
+      return Teacher.find({
+        $or: [
+          { name: regex },
+          { grooves: regex },
+        ],
+      })
     },
     teachers: async () => {
       return Teacher.find().populate('classes');
