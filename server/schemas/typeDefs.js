@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     savedVideos: [Video]
+    uploadedVideos: [Video]
     videoCount: Int
     firstName: String!
     lastName: String
@@ -39,7 +40,6 @@ const typeDefs = gql`
   type Class {
     _id: ID!
     name: String!
-    genre: String!
     instructor: Teacher!
     schedule: Schedule!
     location: String
@@ -47,7 +47,6 @@ const typeDefs = gql`
 
   input ClassInput {
     name: String!
-    genre: String!
     instructor: ID!
     schedule: ScheduleInput!
     duration: String!
@@ -67,8 +66,7 @@ const typeDefs = gql`
   type Teacher {
     _id: ID!
     name: String!
-    genre: String!
-    email: String!
+    dancestyles: [String!]
     classes: [Class]
   }
 
@@ -81,6 +79,7 @@ const typeDefs = gql`
     class(id: ID!): Class
     videos: [Video]
     video(id: ID!): Video
+    searchVideos(title: String, author, String, genre: String): [Video]
   }
 
   type Auth {
@@ -96,13 +95,16 @@ const typeDefs = gql`
     addVideo(videoData: VideoInput!): Video
     updateVideo(id: ID!, videoData: VideoInput!): Video
     removeVideo(id: ID!): Video
+    addVideoToLibrary(videoId: ID!): User
+    removeVideoFromLibrary(videoId: ID!): User
+    deleteUploadedVideo(videoId: ID!): Video
 
     addTeacher(name: String!, genre: String!, email: String!): Teacher
-    updateTeacher(id: ID!, name: String, genre: String, email: String): Teacher
+    updateTeacher(id: ID!, name: String, dancestyles: [String], email: String): Teacher
     removeTeacher(id: ID!): Teacher
     
     addClass(name: String!, genre: String!, instructor: ID!, schedule: ScheduleInput!, duration: String!, location: String): Class
-    updateClass(id: ID!, name: String, genre: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
+    updateClass(id: ID!, name: String, dancestyles: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
     removeClass(id: ID!): Class
   }
 `;
