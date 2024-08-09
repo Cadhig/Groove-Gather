@@ -6,7 +6,8 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Profile from "./pages/Profile.jsx";
 import Calendar from "./pages/Calendar.jsx";
-import "./styles/index.css";
+import './index.css'
+import Homepage from "./pages/Homepage.jsx";
 
 // Initialize Apollo Client
 const client = new ApolloClient({
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/calendar",
     element: <Calendar />
+  },
+  {
+    path: "/homepage",
+    element: <Homepage />
   }
 ]);
 
