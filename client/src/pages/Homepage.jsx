@@ -1,7 +1,9 @@
-
+import Header from "../Components/Header"
 export default function Homepage() {
-
+    const danceStyles = ["Shuffle", "Hoop", "Aerial", "Wand", "Breaking", "Tutting"]
     return (
-        <div>homepage</div>
+        <div>
+            <Header />
+        </div>
     )
 }
