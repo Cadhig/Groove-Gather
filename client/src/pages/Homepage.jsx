@@ -1,7 +1,6 @@
 import CalendarPreview from "../Components/CalendarPreview"
 import Grooves from "../Components/Grooves"
 import Header from "../Components/Header"
-import SearchBar from "../Components/SearchBar"
 import TopSongs from "../Components/TopSongs"
 export default function Homepage() {
     return (
