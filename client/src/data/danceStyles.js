@@ -1,10 +1,10 @@
 
 import Shuffle from '../assets/Shuffle.png'
-import Hoop from '../assets/Hoop.jpg'
-import Aerial from '../assets/Aerial.jpg'
-import Wand from '../assets/Wand.jpg'
-import Breaking from '../assets/Breaking.jpg'
-import Tutting from '../assets/Tutting.jpg'
+import Hoop from '../assets/Hoop.png'
+import Aerial from '../assets/Aerial.png'
+import Wand from '../assets/Wand.png'
+import Breaking from '../assets/Breaking.png'
+import Tutting from '../assets/Tutting.png'
 export const danceStyles = [
     {
         title: "Shuffle",
