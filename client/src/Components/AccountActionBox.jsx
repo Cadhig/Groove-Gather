@@ -15,6 +15,7 @@ import Auth from '../utils/auth'
 
 export default function AccountActionBox(props) {
     const navigate = useNavigate()
+    const [username, setUsername] = useState() // username is a required field for sign up
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [verifyPassword, setVerifyPassword] = useState()
@@ -33,7 +34,10 @@ export default function AccountActionBox(props) {
         hideConfirmPass = "w-full flex flex-col"
         linkSwitch = '/'
     }
-
+    
+    function handleUsernameChange(evt) {
+        setUsername(evt.target.value)
+    }
     function handleEmailChange(evt) {
         setEmail(evt.target.value)
     }
@@ -68,7 +72,7 @@ export default function AccountActionBox(props) {
             }
             try {
                 const { data } = await addUser({
-                    variables: { email, password },
+                    variables: { username, email, password }, // Added username
                 })
 
                 alert('Account creation successful!')
@@ -88,6 +92,13 @@ export default function AccountActionBox(props) {
                 <h1 className="text-3xl ">{props.welcome}</h1>
                 <p className="text-gray-500">Flow, Swing, Jazz, Groove Gather.</p>
                 <div className=" lg:w-1/2 flex w-3/4 flex-col gap-5 p-4 items-center">
+                    {/* This makes the username field only visible on the sign up screen */}
+                    {props.type === "Sign Up" && (
+                        <div className="w-full">
+                            <h1 className="text-lg">Username</h1>
+                            <input type="text" className="border border-groove-red rounded w-full p-2" placeholder="username" onChange={handleUsernameChange} />
+                        </div>
+                    )}
                     <div className="w-full">
                         <h1 className="text-lg">Email</h1>
                         <input type="text" className="border border-groove-red rounded w-full p-2" placeholder="you@email.com" onChange={handleEmailChange} />
