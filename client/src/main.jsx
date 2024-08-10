@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -9,12 +9,27 @@ import Calendar from "./pages/Calendar.jsx";
 import GrooveResult from './pages/GrooveResult.jsx'
 import './index.css'
 import Homepage from "./pages/Homepage.jsx";
+import { setContext } from '@apollo/client/link/context'
 
 // Initialize Apollo Client
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: new HttpLink({
-    uri: "http://localhost:3001/graphql", // Your GraphQL endpoint
-  }),
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

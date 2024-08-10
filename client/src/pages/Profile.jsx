@@ -1,13 +1,29 @@
+import { useQuery } from '@apollo/client'
+import { GET_ME } from '../utils/queries'
 import backdrop from '../assets/backdrop.jpg'
 import profile from '../assets/profile.jpg'
+
 export default function Account() {
+    const {loading, error, data } = useQuery(GET_ME);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        console.error('Error fetching profile:', error);
+        return <p>Error loading profile.</p>;
+    }
+
+    const username = data?.me?.username || 'User'; 
+
 
     return (
         <div className='flex items-center w-full justify-center default-font'>
             <div className='flex flex-col gap-1 lg:w-1/2'>
                 <CoverAndProfilePicture />
                 <div className='ml-6 flex gap-2 items-center'>
-                    <p className='font-bold text-xl'>Username</p>
+                    <p className='font-bold text-xl'>{username}</p>
                     <p className='text-black/50 text-sm'>pro/nouns</p>
                 </div>
                 <div className='mx-6'>
