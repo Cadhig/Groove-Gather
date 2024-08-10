@@ -27,7 +27,7 @@ const CalendarPage = () => {
   if (error) return <p>Error loading classes: {error.message}</p>;
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: '100vh' }} className='defaultFont'>
       <Calendar
         localizer={localizer}
         events={eventList}
