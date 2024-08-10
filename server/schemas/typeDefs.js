@@ -48,7 +48,10 @@ const typeDefs = gql`
   type Query {
     me: User
     user(id: ID!): User
-    searchTeachers(keyword: String!): [Teacher]
+    searchTeachers(
+      keyword: String!,
+      dancestyles: [String], # this may change to grooves
+    ): [Teacher]
     teachers: [Teacher]
     teacher(id: ID!): Teacher
     classes: [Class]
