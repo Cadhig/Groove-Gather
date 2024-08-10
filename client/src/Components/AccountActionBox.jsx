@@ -9,12 +9,20 @@
 import { Link, useNavigate } from "react-router-dom"
 import LoginAndSignupHeader from "./LoginAndSignupHeader"
 import { useState } from "react"
+import { useMutation } from '@apollo/client'
+import { LOGIN_USER, ADD_USER } from "../utils/mutations"
+import Auth from '../utils/auth'
 
 export default function AccountActionBox(props) {
     const navigate = useNavigate()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [verifyPassword, setVerifyPassword] = useState()
+    
+    // Mutations for login and signup
+    const [loginUser] = useMutation(LOGIN_USER);
+    const [addUser] = useMutation(ADD_USER);
+    
     console.log(props.confirm)
     let hideConfirmPass
     let linkSwitch
@@ -38,33 +46,34 @@ export default function AccountActionBox(props) {
     }
 
 
-    function handleSubmit() {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
         if (props.type === 'Login') {
-            data = {
-                email: email,
-                password: password
-            }
             try {
-                //LOGIN api call
-                //Pass data as the body
-                return navigate('/homepage')
+                const { data } = await loginUser({
+                    variables: { email, password },
+                });
+
+                Auth.login(data.login.token);
+                navigate('/homepage')
             } catch (err) {
                 console.error(err)
             }
-        }
+        };
+
         if (props.type === "Sign Up") {
             if (verifyPassword !== password) {
                 return console.log('passwords do not match')
             }
-            data = {
-                email: email,
-                password: password
-            }
             try {
-                //Sign Up api call
-                //Pass data as the body
+                const { data } = await addUser({
+                    variables: { email, password },
+                })
+
                 alert('Account creation successful!')
-                return navigate('/login')
+                Auth.login(data.addUser.token);
+                navigate('/login')
             } catch (err) {
                 console.error(err)
             }
