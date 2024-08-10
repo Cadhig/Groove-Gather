@@ -21,7 +21,7 @@ const resolvers = {
       return Teacher.find({
         $or: [
           { name: regex },
-          { grooves: regex },
+          { dancestyles: regex }, // This may change to grooves
         ],
       })
     },
