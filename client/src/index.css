@@ -13,3 +13,7 @@
     font-weight: 400;
     font-style: normal;
 }
+
+.hideScrollbar::-webkit-scrollbar {
+    display: none;
+}
