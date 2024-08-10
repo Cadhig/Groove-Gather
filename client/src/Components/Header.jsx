@@ -11,7 +11,7 @@ export default function Header() {
                 <Link to={'/profile'} className='border-groove-red border flex items-center justify-center rounded-full size-12 md:size-16'>
                     <img src={ProfilePicture} alt="profile" className=' w-10 md:w-14 rounded-full relative' />
                 </Link>
-                <p className='text-xl'>Logout</p>
+                <button className='text-xl'>Logout</button>
             </div>
         </div>
     )
