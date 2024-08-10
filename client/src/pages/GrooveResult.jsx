@@ -9,7 +9,7 @@ export default function GrooveResult() {
     // any questions ask Cadence
 
     return (
-        <div>
+        <div className="defaultFont">
             result
         </div>
     )

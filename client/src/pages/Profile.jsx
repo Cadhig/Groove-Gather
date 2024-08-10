@@ -22,7 +22,7 @@ export default function Account() {
 function CoverAndProfilePicture() {
 
     return (
-        <div className='h-80'>
+        <div className='h-80 defaultFont'>
             <img src={backdrop} alt="cover" className='relative h-64 w-full object-fill mx-auto' />
             <div className='rounded-full size-28 flex items-center justify-center absolute left-6 lg:left-[26%] top-48 border-2 border-groove-red '>
                 <img src={profile} alt="profile" className='rounded-full size-24' />

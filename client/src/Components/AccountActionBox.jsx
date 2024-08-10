@@ -82,7 +82,7 @@ export default function AccountActionBox(props) {
 
 
     return (
-        <div className="w-full h-svh overflow-hidden">
+        <div className="w-full h-svh overflow-hidden defaultFont">
             <LoginAndSignupHeader />
             <div className="w-full h-full flex justify-center flex-col items-center gap-5 default-font">
                 <h1 className="text-3xl ">{props.welcome}</h1>
