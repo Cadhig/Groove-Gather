@@ -16,6 +16,7 @@ const typeDefs = gql`
     name: String!
     instructor: Teacher!
     schedule: Schedule!
+    duration: String!
     location: String
   }
 
