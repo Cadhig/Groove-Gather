@@ -28,11 +28,12 @@ export const GET_TEACHER_BY_ID = gql`
       _id
       name
       nextfestival
-      dancestyles
+      grooves
       experience
     }
   }
-`;4
+`;
+4;
 
 export const GET_USERS = gql`
   query GetUsers {
@@ -60,12 +61,13 @@ export const GET_CLASSES = gql`
       name
       instructor {
         name
-        
       }
       schedule {
         day
         time
       }
+      duration  
+      location  
     }
   }
 `;
