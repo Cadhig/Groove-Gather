@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server-errors');
+ const { AuthenticationError } = require('apollo-server-errors');
 const { User, Class, Teacher} = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -32,7 +32,9 @@ const resolvers = {
       return Teacher.findById(id).populate('classes');
     },
     classes: async () => {
-      return Class.find().populate('instructor');
+      const result =  Class.find().populate('instructor');
+      console.log (result);
+      return result;
     },
     class: async (parent, { id }) => {
       return Class.findById(id).populate('instructor');

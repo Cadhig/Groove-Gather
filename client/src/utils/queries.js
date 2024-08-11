@@ -66,6 +66,8 @@ export const GET_CLASSES = gql`
         day
         time
       }
+      duration  
+      location  
     }
   }
 `;

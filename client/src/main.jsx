@@ -9,7 +9,11 @@ import Calendar from "./pages/Calendar.jsx";
 import GrooveResult from './pages/GrooveResult.jsx'
 import './index.css'
 import Homepage from "./pages/Homepage.jsx";
+<<<<<<< HEAD
 import { setContext } from '@apollo/client/link/context'
+=======
+// import { Calendar } from "lucide-react";
+>>>>>>> 3149c6c2 (made calendar)
 
 // Initialize Apollo Client
 const httpLink = createHttpLink({
@@ -48,7 +52,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/calendar",
-    element: <Calendar />
+    element: <Calendar/>
   },
   {
     path: "/homepage",
