@@ -3,8 +3,9 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { GET_CASSIECLASSES } from "../utils/queries";
-const localizer = momentLocalizer(moment);
+import CustomEvent from "../Components/SignupButton";
 
+const localizer = momentLocalizer(moment);
 
 const CassieCalendar = () => {
   const { loading, error, data } = useQuery(GET_CASSIECLASSES);
@@ -31,15 +32,13 @@ const CassieCalendar = () => {
     );
 
     return {
-      title: `${classItem.name},
-      ${classItem.duration},
-     ${classItem.location}`,
+      title: `${classItem.name}, ${classItem.duration}, ${classItem.location}`,
       start: startDate,
       end: endDate,
       duration: classItem.duration,
     };
   });
-  // Define eventStyleGetter function
+
   const eventStyleGetter = () => {
     const backgroundColor = '#800000'; // Red color for events
     const style = {
@@ -48,29 +47,36 @@ const CassieCalendar = () => {
       opacity: 0.8,
       color: 'white',
       border: 'none',
+      padding: '2px 5px',
+      fontSize: '0.8rem', // Adjust font size
     };
     return {
       style,
     };
   };
-  console.log (events);
+
+  console.log(events);
 
   return (
     <div>
       <h1 style={{ color: "maroon", textAlign: "center", fontSize: "36px", fontWeight: "bold" }}>
-    Cassie Grooves
-  </h1>
-      <div style={{ height: "500px" }}>
+        Cassie Grooves
+      </h1>
+      <div style={{ height: "700px", width: "100%" }}> 
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 500 }}
+          style={{ height: "100%", width: "100%" }} 
           eventPropGetter={eventStyleGetter}
+          components={{
+            event: CustomEvent
+          }}
         />
       </div>
     </div>
   );
 };
+
 export default CassieCalendar;
