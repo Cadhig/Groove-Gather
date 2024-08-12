@@ -24,7 +24,20 @@ const userSchema = new Schema(
         validator: function(value) {
           return pwSchema.validate(value);
         },
-        message: props => `Password validation failed: ${pwSchema.validate(props.value, { list: true }).join(', ')}`,
+        message: props =>  {
+          const failedList = pwSchema.validate(props.value, { list: true });
+          if (failedList.includes('min') || failedList.includes('max')) {
+            'Password must be between 8 and 100 characters long'
+          } else if (failedList.includes('digits')) {
+            'Password must include at least 1 digit'
+          } else if (failedList.includes('spaces')) {
+            'Password must not include spaces'
+          } else if (failedList.includes('uppercase')) {
+            'Password must include at least 1 uppercase letter'
+          } else if (failedList.includes('oneOf')) {
+            'Passw0rd and Password123 are not allowed'
+          }
+        },
       },
     },
     // Basic profile information
