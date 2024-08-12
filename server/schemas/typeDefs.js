@@ -63,6 +63,18 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+type Query {
+  teacherByName(name: String!): Teacher
+}
+
+type Teacher {
+  _id: ID
+  name: String
+  nextfestival: String
+  bio: String
+  dancestyles: [String]
+  experience: Int
+}
 
   type Mutation {
     login(email: String!, password: String!): Auth
