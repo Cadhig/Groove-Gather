@@ -44,10 +44,12 @@ export default function AccountActionBox(props) {
     }
     function handlePasswordChange(evt) {
         setPassword(evt.target.value)
+        setAlert('hidden')
     }
 
     function handleVerifyPasswordChange(evt) {
         setVerifyPassword(evt.target.value)
+        setAlert('hidden')
     }
 
     function setAlerts(alertType, alertClass) {
