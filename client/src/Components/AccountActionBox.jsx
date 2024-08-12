@@ -9,7 +9,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import LoginAndSignupHeader from "./LoginAndSignupHeader"
 import { useState } from "react"
-import { useMutation } from '@apollo/client'
+import { ApolloError, useMutation } from '@apollo/client'
 import { LOGIN_USER, ADD_USER } from "../utils/mutations"
 import Auth from '../utils/auth'
 
@@ -19,12 +19,13 @@ export default function AccountActionBox(props) {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [verifyPassword, setVerifyPassword] = useState()
-    
+    const [alert, setAlert] = useState('hidden')
+    const [alertType, setAlertType] = useState()
+
     // Mutations for login and signup
     const [loginUser] = useMutation(LOGIN_USER);
     const [addUser] = useMutation(ADD_USER);
-    
-    console.log(props.confirm)
+
     let hideConfirmPass
     let linkSwitch
     if (props.confirm === false) {
@@ -34,7 +35,7 @@ export default function AccountActionBox(props) {
         hideConfirmPass = "w-full flex flex-col"
         linkSwitch = '/'
     }
-    
+
     function handleUsernameChange(evt) {
         setUsername(evt.target.value)
     }
@@ -49,6 +50,11 @@ export default function AccountActionBox(props) {
         setVerifyPassword(evt.target.value)
     }
 
+    function setAlerts(alertType, alertClass) {
+        setAlertType(alertType)
+        setAlert(alertClass)
+    }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,7 +64,6 @@ export default function AccountActionBox(props) {
                 const { data } = await loginUser({
                     variables: { email, password },
                 });
-
                 Auth.login(data.login.token);
                 navigate('/homepage')
             } catch (err) {
@@ -67,8 +72,8 @@ export default function AccountActionBox(props) {
         };
 
         if (props.type === "Sign Up") {
-            if (verifyPassword !== password) {
-                return console.log('passwords do not match')
+            if (password !== verifyPassword) {
+                return setAlerts("Passwords do not match", "inline text-groove-red")
             }
             try {
                 const { data } = await addUser({
@@ -111,6 +116,7 @@ export default function AccountActionBox(props) {
                         <h1 className="text-lg">Confirm Password</h1>
                         <input type="password" placeholder="Confirm password" className="border border-groove-red rounded w-full p-2" onChange={handleVerifyPasswordChange} />
                     </div>
+                    <div className={alert}>{alertType}</div>
                     <button className="bg-groove-red text-white p-2 text-xl w-full rounded hover:bg-groove-red-hover active:bg-groove-red-active" onClick={handleSubmit}>{props.type}</button>
                     <div className="flex text-sm gap-1 lg:text-md" >
                         <p>{props.redirect}</p><Link to={linkSwitch} className="text-blue-600 cursor-pointer hover:underline">{props.redirectType}</Link>
