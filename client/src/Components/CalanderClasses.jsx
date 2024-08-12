@@ -6,14 +6,15 @@ const CustomEvent = ({ event }) => {
   };
 
   return (
-    <div>
-      <strong>{event.title}</strong>
-      <div>
-        {event.duration && <p>{event.duration}</p>}
-        {event.location && <p>{event.location}</p>}
+    <div className="p-2 bg-red-700 text-white rounded-sm text-xs flex flex-col items-center justify-center">
+      <strong className="text-sm">{event.title}</strong>
+      <div className="mt-1">
+        <p className="m-0 text-xs">{event.duration}</p>
+        <p className="m-0 text-xs">{event.location}</p>
       </div>
       <button 
         onClick={handleSignUp}
+        className="mt-2 bg-white text-red-700 border-none rounded-sm px-2 py-1 text-xs"
       >
         Sign Up
       </button>

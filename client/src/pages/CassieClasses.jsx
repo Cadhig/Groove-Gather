@@ -3,7 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { GET_CASSIECLASSES } from "../utils/queries";
-import CustomEvent from "../Components/SignupButton";
+import CustomEvent from "../Components/CalanderClasses";
 
 const localizer = momentLocalizer(moment);
 
