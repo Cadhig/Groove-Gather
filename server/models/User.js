@@ -32,8 +32,8 @@ const userSchema = new Schema(
             'Password must include at least 1 digit'
           } else if (failedList.includes('spaces')) {
             'Password must not include spaces'
-          } else if (failedList.includes('uppercase')) {
-            'Password must include at least 1 uppercase letter'
+          } else if (failedList.includes('uppercase') || (failedList.includes('lowercase'))) {
+            'Password must include both uppercase and lowercase letters'
           } else if (failedList.includes('oneOf')) {
             'Passw0rd and Password123 are not allowed'
           }
