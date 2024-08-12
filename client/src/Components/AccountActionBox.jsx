@@ -63,9 +63,14 @@ export default function AccountActionBox(props) {
 
         if (props.type === 'Login') {
             try {
-                const { data } = await loginUser({
+                const { data, errors } = await loginUser({
                     variables: { email, password },
+                    errorPolicy: 'all'
                 });
+                if (data.login === null) {
+                    setAlerts(errors[0].message, "inline text-groove-red")
+                }
+                console.log(errors)
                 Auth.login(data.login.token);
                 navigate('/homepage')
             } catch (err) {
@@ -78,10 +83,14 @@ export default function AccountActionBox(props) {
                 return setAlerts("Passwords do not match", "inline text-groove-red")
             }
             try {
-                const { data } = await addUser({
-                    variables: { username, email, password }, // Added username
+                const { data, errors } = await addUser({
+                    variables: { username, email, password },
+                    errorPolicy: 'all'
                 })
-
+                if (data.addUser === null) {
+                    console.log(errors[0].message)
+                    setAlerts(errors[0].message, "inline text-groove-red")
+                }
                 alert('Account creation successful!')
                 Auth.login(data.addUser.token);
                 navigate('/login')
