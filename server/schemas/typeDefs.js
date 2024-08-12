@@ -16,7 +16,6 @@ const typeDefs = gql`
     name: String!
     instructor: Teacher!
     schedule: Schedule!
-    duration: String!
     location: String
   }
 
@@ -41,9 +40,8 @@ const typeDefs = gql`
   type Teacher {
     _id: ID!
     name: String!
-    dancestyles: [String!]
+    grooves: [String!]
     classes: [Class]
-    grooves: [String]
   }
 
   type Query {
@@ -51,7 +49,7 @@ const typeDefs = gql`
     user(id: ID!): User
     searchTeachers(
       keyword: String!,
-      dancestyles: [String], # this may change to grooves
+      grooves: [String], # this may change to grooves
     ): [Teacher]
     teachers: [Teacher]
     teacher(id: ID!): Teacher
@@ -70,11 +68,11 @@ const typeDefs = gql`
     updateUserProfile(firstName: String, lastName: String, bio: String): User
 
     addTeacher(name: String!, genre: String!, email: String!): Teacher
-    updateTeacher(id: ID!, name: String, dancestyles: [String], email: String): Teacher
+    updateTeacher(id: ID!, name: String, grooves: [String], email: String): Teacher
     removeTeacher(id: ID!): Teacher
     
     addClass(name: String!, genre: String!, instructor: ID!, schedule: ScheduleInput!, duration: String!, location: String): Class
-    updateClass(id: ID!, name: String, dancestyles: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
+    updateClass(id: ID!, name: String, grooves: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
     removeClass(id: ID!): Class
   }
 `;
