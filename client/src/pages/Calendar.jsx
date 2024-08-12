@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { GET_CASSIECLASSES } from "../utils/queries";
+import CustomEvent from "../Components/CalanderClasses";
 
 const localizer = momentLocalizer(moment);
 
@@ -53,15 +54,23 @@ const CassieCalendar = () => {
   };
 
   return (
-    <div style={{ height: "500px" }}>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        eventPropGetter={eventStyleGetter} // Apply custom styles
-      />
+    <div>
+      <h1 style={{ color: "maroon", textAlign: "center", fontSize: "36px", fontWeight: "bold" }}>
+        Find your Groove!
+      </h1>
+      <div style={{ height: "700px", width: "100%" }}> 
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: "100%", width: "100%" }} 
+          eventPropGetter={eventStyleGetter}
+          components={{
+            event: CustomEvent
+          }}
+        />
+      </div>
     </div>
   );
 };
