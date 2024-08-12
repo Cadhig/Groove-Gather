@@ -12,8 +12,7 @@ import CassiesProfile from "./pages/CassiesProfile.jsx";
 import './index.css'
 import Homepage from "./pages/Homepage.jsx";
 import { setContext } from '@apollo/client/link/context'
-
-// Initialize Apollo Client
+//itialize Apollo Client
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
 });

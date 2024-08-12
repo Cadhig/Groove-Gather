@@ -17,12 +17,28 @@ const userSchema = new Schema(
       unique: true,
       validate: [isEmail, 'Please enter a valid email address'],
     },
-    // I will implement a custom password validator towards the end of testing.
-    // For now, we'll keep the password requirements simple for ease during development stages
     password: {
       type: String,
       required: true,
-      // pwSchema goes here near end of development stages
+      validate: {
+        validator: function(value) {
+          return pwSchema.validate(value);
+        },
+        message: props =>  {
+          const failedList = pwSchema.validate(props.value, { list: true });
+          if (failedList.includes('min') || failedList.includes('max')) {
+            'Password must be between 8 and 100 characters long'
+          } else if (failedList.includes('digits')) {
+            'Password must include at least 1 digit'
+          } else if (failedList.includes('spaces')) {
+            'Password must not include spaces'
+          } else if (failedList.includes('uppercase')) {
+            'Password must include at least 1 uppercase letter'
+          } else if (failedList.includes('oneOf')) {
+            'Passw0rd and Password123 are not allowed'
+          }
+        },
+      },
     },
     // Basic profile information
     firstName: {
