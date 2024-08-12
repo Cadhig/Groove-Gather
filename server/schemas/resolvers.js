@@ -1,6 +1,7 @@
  const { AuthenticationError } = require('apollo-server-errors');
 const { User, Class, Teacher} = require('../models');
 const { signToken } = require('../utils/auth');
+const pwSchema = require('../utils/pwValidator');
 
 const resolvers = {
   Query: {
@@ -43,9 +44,18 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+      try {
+        if (!pwSchema.validate(password)) {
+          throw new AuthenticationError(`Password validation failed: ${pwSchema.validate(password, { list: true }).join(', ')}`);
+        }
+
+        const user = await User.create({ username, email, password });
+        const token = signToken(user);
+        return { token, user };
+      } catch (error) {
+        throw new AuthenticationError(error.message);
+      }
+
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
