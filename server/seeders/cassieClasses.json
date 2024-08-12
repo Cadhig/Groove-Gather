@@ -1,6 +1,6 @@
 [
     {
-      "name": "Advanced flow",
+      "name": "Advanced Hoop",
       "instructor": "Cassie",
       "schedule": {
         "day": "2024-08-02",
@@ -10,7 +10,7 @@
       "location": "Studio A"
     },
     {
-      "name": "Ariel",
+      "name": "Aerial",
       "instructor": "Cassie",
       "schedule": {
         "day": "2024-09-12",
@@ -20,7 +20,7 @@
       "location": "Studio B"
     },
     {
-      "name": "Beginner ariel",
+      "name": "Beginner aerial",
       "instructor": "Cassie",
       "schedule": {
         "day": "2024-08-24",
