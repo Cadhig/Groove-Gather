@@ -17,12 +17,15 @@ const userSchema = new Schema(
       unique: true,
       validate: [isEmail, 'Please enter a valid email address'],
     },
-    // I will implement a custom password validator towards the end of testing.
-    // For now, we'll keep the password requirements simple for ease during development stages
     password: {
       type: String,
       required: true,
-      // pwSchema goes here near end of development stages
+      validate: {
+        validator: function(value) {
+          return pwSchema.validate(value);
+        },
+        message: props => `Password validation failed: ${pwSchema.validate(props.value, { list: true }).join(', ')}`,
+      },
     },
     // Basic profile information
     firstName: {
