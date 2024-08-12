@@ -71,3 +71,32 @@ export const GET_CLASSES = gql`
     }
   }
 `;
+export const GET_CASSIECLASSES = gql`
+  query GetClasses {
+    classes {
+      name
+      instructor {
+        name
+      }
+      schedule {
+        day
+        time
+      }
+      duration  
+      location  
+    }
+  }
+`;
+
+export const GET_TEACHER_BY_NAME = gql`
+  query GetTeacherByName($name: String!) {
+    teacherByName(name: $name) {
+      _id
+      name
+      nextfestival
+      bio
+      dancestyles
+      experience
+    }
+  }
+`;
