@@ -1,4 +1,4 @@
- const { AuthenticationError } = require('apollo-server-errors');
+const { AuthenticationError } = require('apollo-server-errors');
 const { User, Class, Teacher} = require('../models');
 const { signToken } = require('../utils/auth');
 const pwSchema = require('../utils/pwValidator');
@@ -22,7 +22,7 @@ const resolvers = {
       return Teacher.find({
         $or: [
           { name: regex },
-          { dancestyles: regex }, // This may change to grooves
+          { grooves: regex },
         ],
       })
     },
@@ -102,22 +102,22 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-    addTeacher: async (parent, { name, nextFestival, bio, danceStyles, experience,}) => {
-      const teacher = new Teacher({ name, nextFestival, bio, danceStyles, experience, });
+    addTeacher: async (parent, { name, nextFestival, bio, grooves, experience,}) => {
+      const teacher = new Teacher({ name, nextFestival, bio, grooves, experience, });
       return teacher.save();
     },
-    updateTeacher: async (parent, { id, name, nextFestival, bio, danceStyles, experience, }) => {
-      return Teacher.findByIdAndUpdate(id, { name, nextFestival, bio, danceStyles, experience, }, { new: true });
+    updateTeacher: async (parent, { id, name, nextFestival, bio, grooves, experience, }) => {
+      return Teacher.findByIdAndUpdate(id, { name, nextFestival, bio, grooves, experience, }, { new: true });
     },
     removeTeacher: async (parent, { id }) => {
       return Teacher.findByIdAndDelete(id);
     },
-    addClass: async (parent, { name, danceStyles, instructor, schedule, duration, location }) => {
-      const newClass = new Class({ name, dance, instructor, schedule, duration, location });
+    addClass: async (parent, { name, instructor, schedule, duration, location }) => {
+      const newClass = new Class({ name, instructor, schedule, duration, location });
       return newClass.save();
     },
-    updateClass: async (parent, { id, name, danceStyles, instructor, schedule, duration, location }) => {
-      return Class.findByIdAndUpdate(id, { name, danceStyles, instructor, schedule, duration, location }, { new: true });
+    updateClass: async (parent, { id, name, grooves, instructor, schedule, duration, location }) => {
+      return Class.findByIdAndUpdate(id, { name, grooves, instructor, schedule, duration, location }, { new: true });
     },
     removeClass: async (parent, { id }) => {
       return Class.findByIdAndDelete(id);
