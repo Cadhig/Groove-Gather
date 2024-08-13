@@ -8,7 +8,6 @@ import Profile from "./pages/Profile.jsx";
 import Calendar from "./pages/Calendar.jsx";
 import GrooveResult from './pages/GrooveResult.jsx'
 import CassieClasses from "./pages/CassieClasses.jsx";
-import CassiesProfile from "./pages/CassiesProfile.jsx";
 import './index.css'
 import Homepage from "./pages/Homepage.jsx";
 import { setContext } from '@apollo/client/link/context'
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
     path: "/cassiesclasses",
     element: <CassieClasses />
   },
-  {
-    path: "/cassiesprofile",
-    element: <CassiesProfile />
-  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
