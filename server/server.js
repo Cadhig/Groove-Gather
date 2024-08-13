@@ -15,6 +15,9 @@ const server = new ApolloServer({
   resolvers,
 });
 
+const origin = 'http://localhost:3000' || 'http://0.0.0.0:3000'
+
+
 
 const startApolloServer = async () => {
   await server.start();
@@ -24,7 +27,7 @@ const startApolloServer = async () => {
 
   // Allows requests from frontend
   app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: origin,
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,

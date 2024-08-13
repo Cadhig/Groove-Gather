@@ -13,8 +13,9 @@ import './index.css'
 import Homepage from "./pages/Homepage.jsx";
 import { setContext } from '@apollo/client/link/context'
 //itialize Apollo Client
+const origin = 'http://localhost:3001' || 'http://0.0.0.0:3001'
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql'
+  uri: `${origin}/graphql`
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/calendar",
-    element: <Calendar/>
+    element: <Calendar />
   },
   {
     path: "/homepage",
@@ -60,11 +61,12 @@ const router = createBrowserRouter([
     element: <GrooveResult />
   },
   {
-    path:"/cassiesclasses",
-    element:<CassieClasses/>
+    path: "/cassiesclasses",
+    element: <CassieClasses />
   },
-  { path:"/cassiesprofile",
-    element:<CassiesProfile/>
+  {
+    path: "/cassiesprofile",
+    element: <CassiesProfile />
   }
 ]);
 
