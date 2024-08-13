@@ -21,7 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       validate: {
-        validator: function(value) {
+        validator: function (value) {
           return pwSchema.validate(value);
         },
         message: 'Password validation failed.',
