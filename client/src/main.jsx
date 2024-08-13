@@ -1,42 +1,72 @@
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
-import App from "./App.jsx";
-import Login from "./Login.jsx";
-import Signup from "./Signup.jsx";
-import "./index.css";
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-} from "@apollo/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom"
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
+import Profile from "./pages/Profile.jsx";
+import Calendar from "./pages/Calendar.jsx";
+import GrooveResult from './pages/GrooveResult.jsx'
+import CassieClasses from "./pages/CassieClasses.jsx";
+import CassiesProfile from "./pages/CassiesProfile.jsx";
+import './index.css'
+import Homepage from "./pages/Homepage.jsx";
+import { setContext } from '@apollo/client/link/context'
+//itialize Apollo Client
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
-  },
-  {
-    path: "/login",
     element: <Login />
   },
   {
     path: "/signup",
     element: <Signup />
   },
-])
-
-// Initialize Apollo Client
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: "http://localhost:3001/graphql", // Replace with your GraphQL endpoint
-  }),
-  cache: new InMemoryCache(), // Recommended for caching GraphQL queries
-});
+  {
+    path: "/profile",
+    element: <Profile />
+  },
+  {
+    path: "/calendar",
+    element: <Calendar/>
+  },
+  {
+    path: "/homepage",
+    element: <Homepage />
+  },
+  {
+    path: "/grooveResult",
+    element: <GrooveResult />
+  },
+  {
+    path:"/cassiesclasses",
+    element:<CassieClasses/>
+  },
+  { path:"/cassiesprofile",
+    element:<CassiesProfile/>
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>

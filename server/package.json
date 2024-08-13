@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "watch": "nodemon server.js",
+    "start": "node server.js",
+    "watch": "node server.js",
     "seed": "node -r dotenv/config seeders/seed.js"
   },
   "dependencies": {
@@ -18,7 +18,9 @@
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.0",
+    "password-validator": "^5.3.0",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

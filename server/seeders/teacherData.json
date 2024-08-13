@@ -1,34 +1,25 @@
-
 [
-    {
-      "name": "Alex Johnson",
-      "nextFestival":"EDC",
-      "bio": "Specializes in high-energy dance styles with a focus on freeform movements.",
-      "danceStyles": ["Ariel", "Wand"],
-      "experience": 5,
-      "contactInfo": {
-        "phone": "555-1234"
-      }
-    },
-    {
-      "name": "Jamie Lee",
-      "nextFestival":"ULTA",
-      "bio": "Expert in choreographed routines with a passion for Trance music.",
-      "danceStyles": ["Shuffle", "Headbanger"],
-      "experience": 8,
-      "contactInfo": {
-        "phone": "555-5678"
-      }
-    },
-    {
-      "name": "Taylor Smith",
-      "nextFestival":"Red Rocks",
-      "bio": "Versatile instructor with a focus on both freeform and choreographed styles.",
-      "danceStyles": ["Shuffle", "Hoop"],
-      "experience": 6,
-      "contactInfo": {
-        "phone": "555-8765"
-      }
-    }
-  ]
+  {
+    "name": "Cassie",
+    "nextFestival": "EDC",
+    "bio": "Specializes in high-energy dance styles with a focus on freeform movements.",
+    "grooves":["Aerial", "Hoop"], 
+    "experience": 5
+  },
+  {
+    "name": "Cadence",
+    "nextFestival": "ULTA",
+    "bio": "Expert in choreographed routines with a passion for Trance music.",
+    "grooves": ["Shuffle"],
+    "experience": 8
+  },
+  {
+    "name": "Reyanna",
+    "nextFestival": "Red Rocks",
+    "bio": "Versatile instructor with a focus on both freeform and choreographed styles.",
+    "grooves": ["Shuffle, Breaking"],
+    "experience": 6
+  }
+]
+
   
