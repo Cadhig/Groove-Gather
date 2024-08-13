@@ -1,8 +1,9 @@
 // reference https://ui.dev/react-router-pass-props-to-link
 import Header from "../Components/Header";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_TEACHER_BY_GROOVE } from "../utils/queries";
+import { Link } from 'react-router-dom'
 
 export default function GrooveResult() {
   const location = useLocation();
@@ -24,22 +25,29 @@ export default function GrooveResult() {
       </h1>
       <div className="size-full gap-2 grid grid-rows-2 grid-cols-3">
         {teachers.map((teacher) => (
-          <Link
+          <div
             key={teacher.id}
-            to={`/teacherProfile/${teacher.id}`}
-            className="bg-gray-200 p-4 rounded-md flex flex-col items-center justify-center shadow-lg hover:bg-gray-300"
+            className="bg-gray-200 p-4 rounded-md flex flex-col items-center justify-center shadow-lg"
           >
-            {/* <img
-                            src={profile} // Default profile image
-                            alt={teacher.name}
-                            className="w-24 h-24 object-cover rounded-full mb-2"
-                        /> */}
             <p className="font-bold text-lg">{teacher.name}</p>
-            <p className="text-sm text-gray-600">{teacher.nextFestival}</p>
             <p className="text-sm text-gray-600">
               {teacher.experience} years experience
             </p>
-          </Link>
+            <p className="text-sm text-gray-600">
+              {teacher.bio} 
+            </p>
+            <p className="text-sm text-gray-600">
+              {teacher.nextfestical} 
+            </p>
+            <div>
+            <Link 
+                to={`/Profile`} 
+                className="mt-4 bg-maroon-500 text-white py-2 px-4 rounded hover:bg-maroon-700"
+              >
+                Profile
+              </Link>
+            </div>
+          </div>
         ))}
       </div>
     </div>
