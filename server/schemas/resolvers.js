@@ -46,12 +46,30 @@ const resolvers = {
     addUser: async (parent, { username, email, password }) => {
       try {
         if (!pwSchema.validate(password)) {
-          throw new AuthenticationError(`Password validation failed: ${pwSchema.validate(password, { list: true }).join(', ')}`);
+          const failedList = pwSchema.validate(password, { list: true });
+          let message = '';
+
+          if (failedList.includes('min') || failedList.includes('max')) {
+            message = 'Password must be between 8 and 100 characters long'
+          } else if (failedList.includes('digits')) {
+            message = 'Password must include at least 1 digit'
+          } else if (failedList.includes('spaces')) {
+            message = 'Password must not include spaces'
+          } else if (failedList.includes('uppercase') || failedList.includes('lowercase')) {
+            message = 'Password must include both uppercase and lowercase letters'
+          } else if (failedList.includes('oneOf')) {
+            message = 'Passw0rd and Password123 are not allowed'
+          } else if (failedList) {
+            'Password must be at least 8 characters long, include at least 1 digit, both uppercase and lowercase letters, and with no spaces. Passw0rd and Password123 are not allowed.'
+          }
+
+          throw new AuthenticationError(message);
         }
 
         const user = await User.create({ username, email, password });
         const token = signToken(user);
         return { token, user };
+
       } catch (error) {
         throw new AuthenticationError(error.message);
       }
