@@ -1,5 +1,5 @@
 // reference https://ui.dev/react-router-pass-props-to-link
-
+import Header from "../Components/Header";
 import { useLocation, Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_TEACHER_BY_GROOVE } from "../utils/queries";
@@ -18,6 +18,7 @@ export default function GrooveResult() {
 
   return (
     <div className="defaultFont">
+      <Header />
       <h1 className="text-xl md:text-2xl font-bold text-center mb-4">
         {from} Teachers
       </h1>

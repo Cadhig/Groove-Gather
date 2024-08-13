@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <div className='flex justify-end items-center p-2 md:p-4 text-groove-red  w-full'>
             <div className="text-center w-full absolute">
-                <p className="logo-font text-2xl md:text-4xl text-center">Groove Gather</p>
+                <Link to={'/homepage'}><p className="logo-font text-2xl md:text-4xl text-center">Groove Gather</p></Link>
             </div>
             <div className='flex items-center justify-center gap-1 md:gap-4 cursor-pointer'>
                 <Link to={'/profile'} className='border-groove-red border flex items-center justify-center rounded-full size-12 md:size-16'>
