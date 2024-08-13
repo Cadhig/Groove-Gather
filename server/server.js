@@ -15,8 +15,6 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const origin = 'https://groove-gather.onrender.com:3000' || 'http://localhost:3000'
-
 const startApolloServer = async () => {
   await server.start();
 
@@ -25,7 +23,7 @@ const startApolloServer = async () => {
 
   // Allows requests from frontend
   app.use(cors({
-    origin: origin,
+    origin: 'http://localhost:3000',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,

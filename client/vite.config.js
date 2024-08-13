@@ -9,7 +9,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: 'https://groove-gather.onrender.com:3000' || 'http://localhost:3001',
+        target: 'http://localhost:3001',
         secure: false,
         changeOrigin: true
       }
