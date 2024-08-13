@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom'
 import ProfilePicture from '../assets/profile.jpg'
+import Auth from '../utils/auth';
+
+function handleLogout() {
+    Auth.logout();
+};
+
 export default function Header() {
 
     return (
@@ -11,7 +17,7 @@ export default function Header() {
                 <Link to={'/profile'} className='border-groove-red border flex items-center justify-center rounded-full size-12 md:size-16'>
                     <img src={ProfilePicture} alt="profile" className=' w-10 md:w-14 rounded-full relative' />
                 </Link>
-                <button className='text-xl'>Logout</button>
+                <button className='text-xl' onClick={handleLogout}>Logout</button>
             </div>
         </div>
     )
