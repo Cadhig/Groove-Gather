@@ -15,9 +15,7 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const origin = 'http://localhost:3000' || 'http://0.0.0.0:3000'
-
-
+const origin = 'http://0.0.0.0:3000' || 'http://localhost:3000'
 
 const startApolloServer = async () => {
   await server.start();
