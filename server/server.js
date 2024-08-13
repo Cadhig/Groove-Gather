@@ -15,7 +15,7 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const origin = 'http://0.0.0.0:3000' || 'http://localhost:3000'
+const origin = 'https://groove-gather.onrender.com:3000' || 'http://localhost:3000'
 
 const startApolloServer = async () => {
   await server.start();

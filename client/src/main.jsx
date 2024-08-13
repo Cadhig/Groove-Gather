@@ -13,7 +13,7 @@ import './index.css'
 import Homepage from "./pages/Homepage.jsx";
 import { setContext } from '@apollo/client/link/context'
 //itialize Apollo Client
-const origin = 'http://0.0.0.0:3001' || 'http://localhost:3001'
+const origin = 'https://groove-gather.onrender.com:3001' || 'http://localhost:3001'
 const httpLink = createHttpLink({
   uri: `${origin}/graphql`
 });
