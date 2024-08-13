@@ -1,8 +1,7 @@
-
 import PropTypes from 'prop-types';
 
-function PollSection({ selectedFestival, setSelectedFestival, handleVote, voteMessage }) {
-    const festivals = ["EDC", "Tomorrowland", "Coachella", "Lollapalooza"]; 
+export default function Poll({ selectedFestival, setSelectedFestival, handleVote, voteMessage }) {
+    const festivals = ["EDC", "Tomorrowland", "Coachella", "Lollapalooza"];
 
     return (
         <div className='mx-6 mt-6 p-4 border rounded border-gray-300'>
@@ -18,7 +17,7 @@ function PollSection({ selectedFestival, setSelectedFestival, handleVote, voteMe
                             onChange={() => setSelectedFestival(festival)}
                             className='mr-2'
                         />
-                        {festival}
+                        <span>{festival}</span>
                     </label>
                 ))}
                 <button
@@ -37,11 +36,9 @@ function PollSection({ selectedFestival, setSelectedFestival, handleVote, voteMe
     );
 }
 
-PollSection.propTypes = {
+Poll.propTypes = {
     selectedFestival: PropTypes.string.isRequired,
     setSelectedFestival: PropTypes.func.isRequired,
     handleVote: PropTypes.func.isRequired,
-    voteMessage: PropTypes.string.isRequired,
+    voteMessage: PropTypes.string,
 };
-
-export default PollSection;

@@ -38,20 +38,13 @@ const typeDefs = gql`
     time: String!
   }
 
-  type Teacher {
-    _id: ID!
-    name: String!
-    dancestyles: [String!]
-    classes: [Class]
-    grooves: [String]
-  }
 
   type Query {
     me: User
     user(id: ID!): User
     searchTeachers(
       keyword: String!,
-      dancestyles: [String], # this may change to grooves
+      grooves: [String], 
     ): [Teacher]
     teachers: [Teacher]
     teacher(id: ID!): Teacher
@@ -64,7 +57,11 @@ const typeDefs = gql`
     user: User
   }
 type Query {
-  teacherByName(name: String!): Teacher
+  teacherByName(name: [String]!): Teacher
+}
+
+type Query {
+  teacherByGroove(grooves: [String]!): [Teacher]
 }
 
 type Teacher {
@@ -72,7 +69,7 @@ type Teacher {
   name: String
   nextfestival: String
   bio: String
-  dancestyles: [String]
+  grooves: [String]
   experience: Int
 }
 
@@ -82,11 +79,11 @@ type Teacher {
     updateUserProfile(firstName: String, lastName: String, bio: String): User
 
     addTeacher(name: String!, genre: String!, email: String!): Teacher
-    updateTeacher(id: ID!, name: String, dancestyles: [String], email: String): Teacher
+    updateTeacher(id: ID!, name: String, grooves: [String], email: String): Teacher
     removeTeacher(id: ID!): Teacher
     
     addClass(name: String!, genre: String!, instructor: ID!, schedule: ScheduleInput!, duration: String!, location: String): Class
-    updateClass(id: ID!, name: String, dancestyles: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
+    updateClass(id: ID!, name: String, grooves: String, instructor: ID, schedule: ScheduleInput, duration: String, location: String): Class
     removeClass(id: ID!): Class
   }
 `;

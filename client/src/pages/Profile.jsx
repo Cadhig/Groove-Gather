@@ -3,6 +3,7 @@ import { GET_ME } from '../utils/queries'
 import backdrop from '../assets/backdrop.jpg'
 import profile from '../assets/profile.jpg'
 
+
 export default function Account() {
     const {loading, error, data } = useQuery(GET_ME);
 

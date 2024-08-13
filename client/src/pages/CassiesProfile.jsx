@@ -1,9 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { GET_TEACHER_BY_NAME } from '../utils/queries';
-import backdrop from '../assets/backdrop.jpg';
+import GirlHoop from '../assets/waves.webp';
 import profile from '../assets/profile.jpg';
 import { Link } from 'react-router-dom';
-import { useState } from 'react'; // Import useState from React
+import { useState } from 'react'; 
+import Poll from "../Components/Poll";
+import Music from "../Components/Spotify"
 
 export default function Account() {
     const { loading, error, data } = useQuery(GET_TEACHER_BY_NAME, {
@@ -20,7 +22,6 @@ export default function Account() {
     }
 
     const teacher = data?.teacherByName || []; 
-
     return (
         <div className='flex items-center w-full justify-center default-font'>
             <div className='flex flex-col gap-1 lg:w-1/2'>
@@ -41,8 +42,12 @@ export default function Account() {
                     <p className='text-md text-gray-600'>Experience: {teacher.experience} years</p>
                     <p className='text-md text-gray-600'>Next Festival: {teacher.nextFestival}</p>
                 </div>
+                    <Poll 
+                    />
+                </div>
+                <div><Music/>
+                </div>
             </div>
-        </div>
     );
 }
 
@@ -60,7 +65,7 @@ function CoverAndProfilePicture() {
 
     return (
         <div className='relative h-80 defaultFont'>
-            <img src={backdrop} alt="cover" className='relative h-64 w-full object-fill mx-auto' />
+            <img src={GirlHoop} alt="cover" className='relative h-64 w-full object-cover mx-auto' />
             <div className='rounded-full size-28 flex items-center justify-center absolute left-6 lg:left-[26%] top-48 border-2 border-groove-red'>
                 <img src={profile} alt="profile" className='rounded-full size-24' />
             </div>
