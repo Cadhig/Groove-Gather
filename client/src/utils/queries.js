@@ -33,7 +33,19 @@ export const GET_TEACHER_BY_ID = gql`
     }
   }
 `;
-4;
+
+export const GET_TEACHER_BY_GROOVE = gql`
+  query teacherByGroove($grooves: [String]!) {
+    teacherByGroove(grooves: $grooves) {
+      _id
+      name
+      nextfestival
+      bio
+      grooves
+      experience
+    }
+  }
+`;
 
 export const GET_USERS = gql`
   query GetUsers {
@@ -66,8 +78,8 @@ export const GET_CLASSES = gql`
         day
         time
       }
-      duration  
-      location  
+      duration
+      location
     }
   }
 `;
@@ -82,8 +94,8 @@ export const GET_CASSIECLASSES = gql`
         day
         time
       }
-      duration  
-      location  
+      duration
+      location
     }
   }
 `;
@@ -95,7 +107,19 @@ export const GET_TEACHER_BY_NAME = gql`
       name
       nextfestival
       bio
-      dancestyles
+      grooves
+      experience
+    }
+  }
+`;
+export const SEARCH_TEACHERS = gql`
+  query SearchTeachers($keyword: String!) {
+    searchTeachers(keyword: $keyword) {
+      _id
+      name
+      nextfestival
+      bio
+      grooves
       experience
     }
   }

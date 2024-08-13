@@ -1,7 +1,7 @@
- const { AuthenticationError } = require('apollo-server-errors');
-const { User, Class, Teacher} = require('../models');
-const { signToken } = require('../utils/auth');
-const pwSchema = require('../utils/pwValidator');
+const { AuthenticationError } = require("apollo-server-errors");
+const { User, Class, Teacher } = require("../models");
+const { signToken } = require("../utils/auth");
+const pwSchema = require("../utils/pwValidator");
 
 const resolvers = {
   Query: {
@@ -9,7 +9,7 @@ const resolvers = {
       if (context.user) {
         return User.findById(context.user._id);
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
     user: async (parent, { id }) => {
       return User.findById(id);
@@ -18,27 +18,37 @@ const resolvers = {
       if (!keyword) {
         return [];
       }
-      const regex = new RegExp(keyword, 'i');
+      const regex = new RegExp(keyword, "i");
       return Teacher.find({
         $or: [
           { name: regex },
-          { dancestyles: regex }, // This may change to grooves
+          { grooves: regex }, // This may change to grooves
         ],
-      })
+      });
+    },
+    teacherByGroove: async (parent, { grooves }) => {
+      if (!grooves) {
+        return [];
+      }
+      console.log(grooves);
+
+      return Teacher.find({
+        grooves: { $in: grooves },
+      });
     },
     teachers: async () => {
-      return Teacher.find().populate('classes');
+      return Teacher.find().populate("classes");
     },
     teacher: async (parent, { id }) => {
-      return Teacher.findById(id).populate('classes');
+      return Teacher.findById(id).populate("classes");
     },
     classes: async () => {
-      const result =  Class.find().populate('instructor');
-      console.log (result);
+      const result = Class.find().populate("instructor");
+      console.log(result);
       return result;
     },
     class: async (parent, { id }) => {
-      return Class.findById(id).populate('instructor');
+      return Class.findById(id).populate("instructor");
     },
   },
 
@@ -73,25 +83,28 @@ const resolvers = {
       } catch (error) {
         throw new AuthenticationError(error.message);
       }
-
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-        if (!user) {
-          throw new AuthenticationError('No user found with this email address');
-        }
+      if (!user) {
+        throw new AuthenticationError("No user found with this email address");
+      }
 
-        const correctPW = await user.isCorrectPassword(password);
+      const correctPW = await user.isCorrectPassword(password);
 
-        if(!correctPW) {
-          throw new AuthenticationError('Incorrect credentials');
-        }
+      if (!correctPW) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-        const token = signToken(user);
-        return { token, user };
+      const token = signToken(user);
+      return { token, user };
     },
-    updateUserProfile: async (parent, { firstName, lastName, bio }, context) => {
+    updateUserProfile: async (
+      parent,
+      { firstName, lastName, bio },
+      context
+    ) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           context.user._id,
@@ -100,24 +113,56 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
-    addTeacher: async (parent, { name, nextFestival, bio, danceStyles, experience,}) => {
-      const teacher = new Teacher({ name, nextFestival, bio, danceStyles, experience, });
+    addTeacher: async (
+      parent,
+      { name, nextFestival, bio, grooves, experience }
+    ) => {
+      const teacher = new Teacher({
+        name,
+        nextFestival,
+        bio,
+        grooves,
+        experience,
+      });
       return teacher.save();
     },
-    updateTeacher: async (parent, { id, name, nextFestival, bio, danceStyles, experience, }) => {
-      return Teacher.findByIdAndUpdate(id, { name, nextFestival, bio, danceStyles, experience, }, { new: true });
+    updateTeacher: async (
+      parent,
+      { id, name, nextFestival, bio, grooves, experience }
+    ) => {
+      return Teacher.findByIdAndUpdate(
+        id,
+        { name, nextFestival, bio, grooves, experience },
+        { new: true }
+      );
     },
     removeTeacher: async (parent, { id }) => {
       return Teacher.findByIdAndDelete(id);
     },
-    addClass: async (parent, { name, danceStyles, instructor, schedule, duration, location }) => {
-      const newClass = new Class({ name, dance, instructor, schedule, duration, location });
+    addClass: async (
+      parent,
+      { name, grooves, instructor, schedule, duration, location }
+    ) => {
+      const newClass = new Class({
+        name,
+        instructor,
+        schedule,
+        duration,
+        location,
+      });
       return newClass.save();
     },
-    updateClass: async (parent, { id, name, danceStyles, instructor, schedule, duration, location }) => {
-      return Class.findByIdAndUpdate(id, { name, danceStyles, instructor, schedule, duration, location }, { new: true });
+    updateClass: async (
+      parent,
+      { id, name, grooves, instructor, schedule, duration, location }
+    ) => {
+      return Class.findByIdAndUpdate(
+        id,
+        { name, grooves, instructor, schedule, duration, location },
+        { new: true }
+      );
     },
     removeClass: async (parent, { id }) => {
       return Class.findByIdAndDelete(id);
