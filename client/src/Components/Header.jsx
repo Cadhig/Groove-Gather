@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom'
 import ProfilePicture from '../assets/profile.jpg'
 import Auth from '../utils/auth';
 
-function handleLogout() {
-    Auth.logout();
-};
-
 export default function Header() {
+    const handleLogout = () => {
+        Auth.logout();
+    };
 
     return (
         <div className='flex justify-end items-center p-2 md:p-4 text-groove-red  w-full'>
