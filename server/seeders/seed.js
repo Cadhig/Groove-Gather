@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Teacher = require("../models/Teachers.js");
 const Class = require("../models/Class.js");
 const db = require('../config/connection');
-const cleanDB = require('./cleanDB');
+const cleanDB = require('./cleanDB.js');
 
 const teacherData = require('./teacherData.json');
 const classData = require('./classData.json');
